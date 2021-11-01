@@ -99,27 +99,24 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
-  let showMore = document.querySelector("button");
-  let display = false;
-  showMore.addEventListener("click", (event) => {
-    let main = document.querySelector("main");
-    if (!display) {
-      display = true;
-      for (let i = 3; i < recipes.length; i++) {
-        let recipeCard = document.createElement("recipe-card");
-        recipeCard.className = "showMore";
-        recipeCard.data = recipeData[recipes[i]];
-        main.appendChild(recipeCard);
+  const button = document.querySelector('button');
+  button.addEventListener("click", myFunction);
+  
+  function myFunction() {
+      if(button.innerText == "Show more"){
+          for(let i = 3; i<recipes.length;i++){
+              const recipeCard = document.createElement('recipe-card');
+              recipeCard.data = recipeData[recipes[i]];
+              main.appendChild(recipeCard);
+          }
+          button.innerText = "Show less";
       }
-      showMore.textContent = "Show less";
-    } else {
-      display = false;
-      for (let i = 0; i < 3; i++) {
-        main.removeChild(
-          document.querySelector("recipe-card[class='showMore']")
-        );
+      else{
+          for(let i = 0; i<3; i++){
+              main.removeChild(main.lastElementChild);
+          }
+          button.innerText = "Show more";
       }
-      showMore.textContent = "Show more";
-    }
-  });
+     
+  }
 }
