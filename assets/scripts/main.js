@@ -99,24 +99,36 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
-  const button = document.querySelector('button');
-  button.addEventListener("click", myFunction);
-  
-  function myFunction() {
-      if(button.innerText == "Show more"){
-          for(let i = 3; i<recipes.length;i++){
-              const recipeCard = document.createElement('recipe-card');
-              recipeCard.data = recipeData[recipes[i]];
-              main.appendChild(recipeCard);
-          }
-          button.innerText = "Show less";
+  const button = document.querySelector("button");
+
+  button.addEventListener("click", () => {
+    const cardsList = document.querySelector("main");
+
+    if (button.textContent === "Show more") {
+      button.textContent = "Show less";
+      
+      for (const recipe in recipeData) {
+        if (recipe === "./assets/recipes/recipe1.json"
+            || recipe === "./assets/recipes/recipe2.json"
+            || recipe === "./assets/recipes/recipe3.json") {
+          const card = document.createElement("recipe-card");
+          card.data = recipeData[recipe];
+          cardsList.append(card);
+        }
       }
-      else{
-          for(let i = 0; i<3; i++){
-              main.removeChild(main.lastElementChild);
-          }
-          button.innerText = "Show more";
-      }
-     
-  }
+    } else {
+      button.textContent = "Show more";
+      const allRecipes = document.querySelectorAll("recipe-card");
+
+      allRecipes.forEach((recipe) => {
+        const recipeTitle = recipe.shadowRoot.querySelector("p > a").textContent;
+
+        if (recipeTitle === "Spicy Beef Hokkien Noodles"
+            || recipeTitle === "Honey Garlic Chicken Breast"
+            || recipeTitle === "Nando&#8217;s Peri Peri Chicken Burger") {
+          recipe.remove();
+        }
+      })
+    }
+  })
 }
