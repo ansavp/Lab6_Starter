@@ -94,4 +94,27 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  let showMore = document.querySelector("button");
+  let display = false;
+  showMore.addEventListener("click", (event) => {
+    let main = document.querySelector("main");
+    if (!display) {
+      display = true;
+      for (let i = 3; i < recipes.length; i++) {
+        let recipeCard = document.createElement("recipe-card");
+        recipeCard.className = "showMore";
+        recipeCard.data = recipeData[recipes[i]];
+        main.appendChild(recipeCard);
+      }
+      showMore.textContent = "Show less";
+    } else {
+      display = false;
+      for (let i = 0; i < 3; i++) {
+        main.removeChild(
+          document.querySelector("recipe-card[class='showMore']")
+        );
+      }
+      showMore.textContent = "Show more";
+    }
+  });
 }
