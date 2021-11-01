@@ -44,7 +44,7 @@ async function fetchRecipes() {
 
     // Part 1 Expose - TODO
 
-    let numRecipes = 0;
+    let rnum = 0;
 
     for (let i = 0; i < recipes.length; ++i) {
       fetch(recipes[i])
@@ -53,9 +53,9 @@ async function fetchRecipes() {
         })
         .then((data) => {
           recipeData[recipes[i]] = data;
-          ++numRecipes
+          ++rnum
 
-          if (numRecipes === recipes.length) {
+          if (rnum === recipes.length) {
             resolve(true);
           }
         })
