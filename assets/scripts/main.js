@@ -74,6 +74,8 @@ function createRecipeCards() {
   // show any others you've added when the user clicks on the "Show more" button.
 
   // Part 1 Expose - TODO
+  const cardsList = document.querySelector("main");
+  
   for (const recipe in recipeData) {
     if (recipe !== "./assets/recipes/recipe1.json"
         && recipe !== "./assets/recipes/recipe2.json"
